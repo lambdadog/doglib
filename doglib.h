@@ -1,5 +1,13 @@
 /* doglib.h - lambdadog's repository for reusable C code.
 
+   FLAGS
+     DOGLIB_IMPL
+       Include the implementation. Should only be used in one file
+       unless DOGLIB_STATIC is used.
+
+     DOGLIB_STATIC
+       Mark all exports as static. Implies DOGLIB_IMPL.
+
    USAGE
      Shorthand integer types
        doglib typedefs the following int types from <stdint.h> for
@@ -12,14 +20,6 @@
      DOGLIB_TYPES_EQ macro
        Imperfect macro for checking type equality at
        compile-time. Does not work properly for list types or void.
-
-   FLAGS
-     DOGLIB_IMPL
-       Include the implementation. Should only be used in one file
-       unless DOGLIB_STATIC is used.
-
-     DOGLIB_STATIC
-       Mark all exports as static. Implies DOGLIB_IMPL.
 
    LICENSE
      SPDX-License-Identifier: Unlicense OR MIT
