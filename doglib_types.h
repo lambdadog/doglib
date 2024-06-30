@@ -1,12 +1,9 @@
-/* doglib.h - lambdadog's repository for reusable C code.
+/* doglib_types.h - reusable C types
 
    FLAGS
-     DOGLIB_IMPL
-       Include the implementation. Should only be used in one file
-       unless DOGLIB_STATIC is used.
-
-     DOGLIB_STATIC
-       Mark all exports as static. Implies DOGLIB_IMPL.
+     DOGLIB_TYPES_PREFIXED
+       Prefixes all types with doglib_. Ideally wouldn't be used, but
+       may be useful in the case of name collisions.
 
    USAGE
      Shorthand integer types
@@ -25,18 +22,16 @@
      SPDX-License-Identifier: Unlicense OR MIT
 
      See end of file for more detail.
+*/
 
- */
+#ifndef DOGLIB_TYPES_H
+#define DOGLIB_TYPES_H
 
-#ifdef DOGLIB_STATIC
-#define DOGLIB_API static
-#define DOGLIB_IMPL
+#ifdef DOGLIB_TYPES_PREFIXED
+#define DOGLIB_TYPE(T) doglib_##T
 #else
-#define DOGLIB_API extern
+#define DOGLIB_TYPE(T) T
 #endif
-
-#ifndef DOGLIB_H
-#define DOGLIB_H
 
 #include <stdint.h>
 #include <assert.h>
@@ -46,18 +41,16 @@
 
 static_assert(DOGLIB_TYPES_EQ(uintptr_t, size_t), "uintptr_t != size_t");
 
-typedef    int8_t  i8;
-typedef   uint8_t  u8;
-typedef   int16_t i16;
-typedef  uint16_t u16;
-typedef   int32_t i32;
-typedef  uint32_t u32;
-typedef   int64_t i64;
-typedef  uint64_t u64;
-typedef  intptr_t isize;
-typedef uintptr_t usize;
-#endif
-#ifdef DOGLIB_IMPL
+typedef    int8_t DOGLIB_TYPE( i8);
+typedef   uint8_t DOGLIB_TYPE( u8);
+typedef   int16_t DOGLIB_TYPE(i16);
+typedef  uint16_t DOGLIB_TYPE(u16);
+typedef   int32_t DOGLIB_TYPE(i32);
+typedef  uint32_t DOGLIB_TYPE(u32);
+typedef   int64_t DOGLIB_TYPE(i64);
+typedef  uint64_t DOGLIB_TYPE(u64);
+typedef  intptr_t DOGLIB_TYPE(isize);
+typedef uintptr_t DOGLIB_TYPE(usize);
 #endif
 
 /*
