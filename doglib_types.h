@@ -18,6 +18,12 @@
        Imperfect macro for checking type equality at
        compile-time. Does not work properly for list types or void.
 
+     DOGLIB_TYPE macro
+       Intended mostly for internal use, but may also be useful to
+       libraries which depend on doglib. Depending on whether
+       DOGLIB_TYPES_PREFIXED is defined, DOGLIB_TYPE(asdf) either
+       evaluates to doglib_asdf or asdf.
+
    LICENSE
      SPDX-License-Identifier: Unlicense OR MIT
 
@@ -28,9 +34,9 @@
 #define DOGLIB_TYPES_H
 
 #ifdef DOGLIB_TYPES_PREFIXED
-#define DOGLIB_TYPE(T) doglib_##T
+#  define DOGLIB_TYPE(T) doglib_##T
 #else
-#define DOGLIB_TYPE(T) T
+#  define DOGLIB_TYPE(T) T
 #endif
 
 #include <stdint.h>
