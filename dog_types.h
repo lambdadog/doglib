@@ -1,10 +1,5 @@
 /* dog_types.h - reusable C types
 
-   FLAGS
-     DOG_TYPES_PREFIXED
-       Prefixes all types with dog_. Ideally wouldn't be used, but
-       may be useful in the case of name collisions.
-
    USAGE
      Shorthand integer types
        doglib typedefs the following int types from <stdint.h> for
@@ -18,12 +13,6 @@
        Imperfect macro for checking type equality at
        compile-time. Does not work properly for list types or void.
 
-     DOG_TYPE macro
-       Intended mostly for internal use, but may also be useful to
-       libraries which depend on doglib. Depending on whether
-       DOG_TYPES_PREFIXED is defined, DOG_TYPE(asdf) either evaluates
-       to dog_asdf or asdf.
-
    LICENSE
      SPDX-License-Identifier: Unlicense OR MIT
 
@@ -33,12 +22,6 @@
 
 #ifndef DOG_TYPES_H_DEFS
 #define DOG_TYPES_H_DEFS
-
-#ifdef DOG_TYPES_PREFIXED
-#  define DOG_TYPE(T) dog_##T
-#else
-#  define DOG_TYPE(T) T
-#endif
 
 #include <stdint.h>
 #include <assert.h>
@@ -51,36 +34,36 @@
 
 static_assert(DOG_TYPES_EQ(uintptr_t, size_t), "uintptr_t != size_t");
 
-typedef    int8_t DOG_TYPE( i8);
-typedef   uint8_t DOG_TYPE( u8);
-typedef   int16_t DOG_TYPE(i16);
-typedef  uint16_t DOG_TYPE(u16);
-typedef   int32_t DOG_TYPE(i32);
-typedef  uint32_t DOG_TYPE(u32);
-typedef   int64_t DOG_TYPE(i64);
-typedef  uint64_t DOG_TYPE(u64);
-typedef  intptr_t DOG_TYPE(isize);
-typedef uintptr_t DOG_TYPE(usize);
+typedef    int8_t    i8;
+typedef   uint8_t    u8;
+typedef   int16_t   i16;
+typedef  uint16_t   u16;
+typedef   int32_t   i32;
+typedef  uint32_t   u32;
+typedef   int64_t   i64;
+typedef  uint64_t   u64;
+typedef  intptr_t isize;
+typedef uintptr_t usize;
 
-#define DOG_I8_MIN  INT8_MIN
-#define DOG_I8_MAX  INT8_MAX
-#define DOG_U8_MAX UINT8_MAX
+#define I8_MIN  INT8_MIN
+#define I8_MAX  INT8_MAX
+#define U8_MAX UINT8_MAX
 
-#define DOG_I16_MIN  INT16_MIN
-#define DOG_I16_MAX  INT16_MAX
-#define DOG_U16_MAX UINT16_MAX
+#define I16_MIN  INT16_MIN
+#define I16_MAX  INT16_MAX
+#define U16_MAX UINT16_MAX
 
-#define DOG_I32_MIN  INT32_MAX
-#define DOG_I32_MAX  INT32_MAX
-#define DOG_U32_MAX UINT32_MAX
+#define I32_MIN  INT32_MAX
+#define I32_MAX  INT32_MAX
+#define U32_MAX UINT32_MAX
 
-#define DOG_I64_MIN  INT64_MIN
-#define DOG_I64_MAX  INT64_MAX
-#define DOG_U64_MAX UINT64_MAX
+#define I64_MIN  INT64_MIN
+#define I64_MAX  INT64_MAX
+#define U64_MAX UINT64_MAX
 
-#define DOG_ISIZE_MIN  INTPTR_MIN
-#define DOG_ISIZE_MAX  INTPTR_MAX
-#define DOG_USIZE_MAX UINTPTR_MAX
+#define ISIZE_MIN  INTPTR_MIN
+#define ISIZE_MAX  INTPTR_MAX
+#define USIZE_MAX UINTPTR_MAX
 
 #endif  /* !DOG_TYPES_H_DEFS */
 
