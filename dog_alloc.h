@@ -27,15 +27,15 @@ typedef struct DogAlloc {
   void (*free)(struct DogAlloc *, void *);
 } DogAlloc;
 
-#define dog_alloc(pAlloc, Size, Align, Count) \
+#define dog_alloc_raw(pAlloc, Size, Align, Count) \
   (((pAlloc)->alloc)(pAlloc, Size, Align, Count))
 #define dog_alloc(pAlloc, T, Count) \
-  dog_alloc(pAlloc, sizeof(T), alignof(T), Count)
+  dog_alloc_raw(pAlloc, sizeof(T), alignof(T), Count)
 
-#define dog_resize(pAlloc, Addr, Size, Align, Count) \
+#define dog_resize_raw(pAlloc, Addr, Size, Align, Count) \
   (((pAlloc)->resize)(pAlloc, Addr, Size, Align, Count))
 #define dog_resize(pAlloc, Addr, T, Count) \
-  dog_resize(pAlloc, Addr, sizeof(T), alignof(T), Count)
+  dog_resize_raw(pAlloc, Addr, sizeof(T), alignof(T), Count)
 
 #define dog_free(pAlloc, Addr) \
   (((pAlloc)->free)(pAlloc, Addr))
