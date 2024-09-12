@@ -30,8 +30,8 @@
      See end of file for more detail.
 */
 
-#ifndef DOG_TYPES_H
-#define DOG_TYPES_H
+#ifndef DOG_TYPES_H_DEFS
+#define DOG_TYPES_H_DEFS
 
 #ifdef DOG_TYPES_PREFIXED
 #  define DOG_TYPE(T) dog_##T
@@ -80,7 +80,8 @@ typedef uintptr_t DOG_TYPE(usize);
 #define DOG_ISIZE_MIN  INTPTR_MIN
 #define DOG_ISIZE_MAX  INTPTR_MAX
 #define DOG_USIZE_MAX UINTPTR_MAX
-#endif
+
+#endif  /* !DOG_TYPES_H_DEFS */
 
 /*
   This software is available under 2 licenses, choose whichever you
