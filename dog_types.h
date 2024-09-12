@@ -28,6 +28,7 @@
      SPDX-License-Identifier: Unlicense OR MIT
 
      See end of file for more detail.
+
 */
 
 #ifndef DOG_TYPES_H_DEFS
