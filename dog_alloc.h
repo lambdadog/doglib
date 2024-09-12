@@ -12,15 +12,18 @@
 
  */
 
+#ifndef DOG_TYPES_H_DEFS
+#  include "dog_types.h"
+#endif
+
 #ifndef DOG_ALLOC_H_DEFS
 #define DOG_ALLOC_H_DEFS
 
 #include <stdalign.h>
-#include <stddef.h>
 
 typedef struct DogAlloc {
-  void *(*alloc)(struct DogAlloc *, size_t, size_t, size_t);
-  int (*resize)(struct DogAlloc *, void *, size_t, size_t, size_t);
+  void *(*alloc)(struct DogAlloc *, usize, usize, usize);
+  int (*resize)(struct DogAlloc *, void *, usize, usize, usize);
   void (*free)(struct DogAlloc *, void *);
 } DogAlloc;
 
