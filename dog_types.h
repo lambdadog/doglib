@@ -23,6 +23,7 @@
 #ifndef DOG_TYPES_H_DEFS
 #define DOG_TYPES_H_DEFS
 
+#include <stddef.h>
 #include <stdint.h>
 #include <assert.h>
 
