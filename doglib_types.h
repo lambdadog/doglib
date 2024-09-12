@@ -42,6 +42,9 @@
 #include <stdint.h>
 #include <assert.h>
 
+/* Re-export */
+#include <stdbool.h>
+
 #define DOGLIB_TYPES_EQ1(T1, T2) _Generic(((T1){0}), T2: 1, default: 0)
 #define DOGLIB_TYPES_EQ(T1, T2) (DOGLIB_TYPES_EQ1(T1, T2) && DOGLIB_TYPES_EQ1(T2, T1))
 
@@ -57,6 +60,26 @@ typedef   int64_t DOGLIB_TYPE(i64);
 typedef  uint64_t DOGLIB_TYPE(u64);
 typedef  intptr_t DOGLIB_TYPE(isize);
 typedef uintptr_t DOGLIB_TYPE(usize);
+
+#define DOGLIB_I8_MIN  INT8_MIN
+#define DOGLIB_I8_MAX  INT8_MAX
+#define DOGLIB_U8_MAX UINT8_MAX
+
+#define DOGLIB_I16_MIN  INT16_MIN
+#define DOGLIB_I16_MAX  INT16_MAX
+#define DOGLIB_U16_MAX UINT16_MAX
+
+#define DOGLIB_I32_MIN  INT32_MAX
+#define DOGLIB_I32_MAX  INT32_MAX
+#define DOGLIB_U32_MAX UINT32_MAX
+
+#define DOGLIB_I64_MIN  INT64_MIN
+#define DOGLIB_I64_MAX  INT64_MAX
+#define DOGLIB_U64_MAX UINT64_MAX
+
+#define DOGLIB_ISIZE_MIN  INTPTR_MIN
+#define DOGLIB_ISIZE_MAX  INTPTR_MAX
+#define DOGLIB_USIZE_MAX UINTPTR_MAX
 #endif
 
 /*
