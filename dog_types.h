@@ -1,8 +1,8 @@
-/* doglib_types.h - reusable C types
+/* dog_types.h - reusable C types
 
    FLAGS
-     DOGLIB_TYPES_PREFIXED
-       Prefixes all types with doglib_. Ideally wouldn't be used, but
+     DOG_TYPES_PREFIXED
+       Prefixes all types with dog_. Ideally wouldn't be used, but
        may be useful in the case of name collisions.
 
    USAGE
@@ -14,15 +14,15 @@
        These conventions are largely inspired by Zig integer types,
        just without the arbitrary sizing.
 
-     DOGLIB_TYPES_EQ macro
+     DOG_TYPES_EQ macro
        Imperfect macro for checking type equality at
        compile-time. Does not work properly for list types or void.
 
-     DOGLIB_TYPE macro
+     DOG_TYPE macro
        Intended mostly for internal use, but may also be useful to
        libraries which depend on doglib. Depending on whether
-       DOGLIB_TYPES_PREFIXED is defined, DOGLIB_TYPE(asdf) either
-       evaluates to doglib_asdf or asdf.
+       DOG_TYPES_PREFIXED is defined, DOG_TYPE(asdf) either evaluates
+       to dog_asdf or asdf.
 
    LICENSE
      SPDX-License-Identifier: Unlicense OR MIT
@@ -30,13 +30,13 @@
      See end of file for more detail.
 */
 
-#ifndef DOGLIB_TYPES_H
-#define DOGLIB_TYPES_H
+#ifndef DOG_TYPES_H
+#define DOG_TYPES_H
 
-#ifdef DOGLIB_TYPES_PREFIXED
-#  define DOGLIB_TYPE(T) doglib_##T
+#ifdef DOG_TYPES_PREFIXED
+#  define DOG_TYPE(T) dog_##T
 #else
-#  define DOGLIB_TYPE(T) T
+#  define DOG_TYPE(T) T
 #endif
 
 #include <stdint.h>
@@ -45,41 +45,41 @@
 /* Re-export */
 #include <stdbool.h>
 
-#define DOGLIB_TYPES_EQ1(T1, T2) _Generic(((T1){0}), T2: 1, default: 0)
-#define DOGLIB_TYPES_EQ(T1, T2) (DOGLIB_TYPES_EQ1(T1, T2) && DOGLIB_TYPES_EQ1(T2, T1))
+#define DOG_TYPES_EQ1(T1, T2) _Generic(((T1){0}), T2: 1, default: 0)
+#define DOG_TYPES_EQ(T1, T2) (DOG_TYPES_EQ1(T1, T2) && DOG_TYPES_EQ1(T2, T1))
 
-static_assert(DOGLIB_TYPES_EQ(uintptr_t, size_t), "uintptr_t != size_t");
+static_assert(DOG_TYPES_EQ(uintptr_t, size_t), "uintptr_t != size_t");
 
-typedef    int8_t DOGLIB_TYPE( i8);
-typedef   uint8_t DOGLIB_TYPE( u8);
-typedef   int16_t DOGLIB_TYPE(i16);
-typedef  uint16_t DOGLIB_TYPE(u16);
-typedef   int32_t DOGLIB_TYPE(i32);
-typedef  uint32_t DOGLIB_TYPE(u32);
-typedef   int64_t DOGLIB_TYPE(i64);
-typedef  uint64_t DOGLIB_TYPE(u64);
-typedef  intptr_t DOGLIB_TYPE(isize);
-typedef uintptr_t DOGLIB_TYPE(usize);
+typedef    int8_t DOG_TYPE( i8);
+typedef   uint8_t DOG_TYPE( u8);
+typedef   int16_t DOG_TYPE(i16);
+typedef  uint16_t DOG_TYPE(u16);
+typedef   int32_t DOG_TYPE(i32);
+typedef  uint32_t DOG_TYPE(u32);
+typedef   int64_t DOG_TYPE(i64);
+typedef  uint64_t DOG_TYPE(u64);
+typedef  intptr_t DOG_TYPE(isize);
+typedef uintptr_t DOG_TYPE(usize);
 
-#define DOGLIB_I8_MIN  INT8_MIN
-#define DOGLIB_I8_MAX  INT8_MAX
-#define DOGLIB_U8_MAX UINT8_MAX
+#define DOG_I8_MIN  INT8_MIN
+#define DOG_I8_MAX  INT8_MAX
+#define DOG_U8_MAX UINT8_MAX
 
-#define DOGLIB_I16_MIN  INT16_MIN
-#define DOGLIB_I16_MAX  INT16_MAX
-#define DOGLIB_U16_MAX UINT16_MAX
+#define DOG_I16_MIN  INT16_MIN
+#define DOG_I16_MAX  INT16_MAX
+#define DOG_U16_MAX UINT16_MAX
 
-#define DOGLIB_I32_MIN  INT32_MAX
-#define DOGLIB_I32_MAX  INT32_MAX
-#define DOGLIB_U32_MAX UINT32_MAX
+#define DOG_I32_MIN  INT32_MAX
+#define DOG_I32_MAX  INT32_MAX
+#define DOG_U32_MAX UINT32_MAX
 
-#define DOGLIB_I64_MIN  INT64_MIN
-#define DOGLIB_I64_MAX  INT64_MAX
-#define DOGLIB_U64_MAX UINT64_MAX
+#define DOG_I64_MIN  INT64_MIN
+#define DOG_I64_MAX  INT64_MAX
+#define DOG_U64_MAX UINT64_MAX
 
-#define DOGLIB_ISIZE_MIN  INTPTR_MIN
-#define DOGLIB_ISIZE_MAX  INTPTR_MAX
-#define DOGLIB_USIZE_MAX UINTPTR_MAX
+#define DOG_ISIZE_MIN  INTPTR_MIN
+#define DOG_ISIZE_MAX  INTPTR_MAX
+#define DOG_USIZE_MAX UINTPTR_MAX
 #endif
 
 /*
